@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="750dp"
+    android:scrollbarTrackHorizontal="@android:color/holo_blue_dark"
+    android:scrollbarTrackVertical="@android:color/holo_purple"
+    tools:context=".MainActivity">
+
+    <TimePicker
+        android:id="@+id/clock"
+        android:layout_width="match_parent"
+        android:layout_height="359dp"
+        android:layout_alignStart="@id/time"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/holo_blue_light"
+        android:headerBackground="@color/colorPrimaryDark"></TimePicker>
+
+    <TextClock
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@id/clock"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="508dp"
+        android:autoText="false"
+        android:background="@android:color/darker_gray"
+        android:capitalize="words"
+        android:ellipsize="middle"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/sounds_to_chose"
+        android:layout_width="434dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="352dp"
+        android:background="@color/colorPrimary"
+        android:text="Sound"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
+    <RadioGroup
+        android:id="@+id/sounds"
+        android:layout_width="match_parent"
+        android:layout_height="154dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="208dp"
+        android:background="@color/colorPrimaryDark">
+
+        <RadioButton
+            android:id="@+id/sound_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="checkButton"
+            android:text="One" />
+
+        <RadioButton
+            android:id="@+id/sound_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="checkButton"
+            android:text="Two" />
+
+        <RadioButton
+            android:id="@+id/sound_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="checkButton"
+            android:text="Three" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="255dp"
+        android:background="@color/design_default_color_primary"
+        android:text="Apply" />
+
+</RelativeLayout>
