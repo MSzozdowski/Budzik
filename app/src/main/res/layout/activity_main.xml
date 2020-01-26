@@ -4,17 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:scrollbarTrackHorizontal="@android:color/holo_blue_dark"
     android:scrollbarTrackVertical="@android:color/holo_purple"
     tools:context=".MainActivity">
 
 
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.budzik.ItemFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_item_list"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="57dp"
-        android:layout_height="78dp"
+        android:layout_width="54dp"
+        android:layout_height="63dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="136dp"
         android:clickable="true"
         android:drawingCacheQuality="high"
         android:focusable="true"
@@ -23,12 +38,28 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777"
+        app:layout_constraintTop_toBottomOf="@+id/fragment2"
+        app:layout_constraintVertical_bias="0.955"
         app:maxImageSize="100dp"
         app:rippleColor="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_menu_add"
         app:useCompatPadding="true" />
+
+    <TextClock
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="508dp"
+        android:autoText="false"
+        android:background="@android:color/darker_gray"
+        android:capitalize="words"
+        android:ellipsize="middle"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:visibility="invisible" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

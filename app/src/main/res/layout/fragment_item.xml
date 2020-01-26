@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_number"
+        android:layout_width="246dp"
+        android:layout_height="3dp"
+        android:layout_margin="@dimen/text_margin"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:layout_gravity="right"
+        android:background="@color/design_default_color_primary"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="250dp"
+        android:layout_height="63dp"
+        android:layout_gravity="top"
+        android:textAlignment="center"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="48sp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+</LinearLayout>

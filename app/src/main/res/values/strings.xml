@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Budzik</string>
+    <string name="delete_question">Delete Question</string>
+    <string name="dialog_confirm">Dialog Confirm</string>
+    <string name="dialog_cancel">Dialog Cancel</string>
+    <string name="delete_dialog_tag">Delete Dialog Tag</string>
+    <string name="delete_cancel_msg">Delete Cancel Message</string>
+    <string name="retry_msg">Retry Message</string>
 </resources>

@@ -1,72 +1,57 @@
 package com.example.budzik;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.TimePickerDialog;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextClock;
 import android.widget.TimePicker;
-import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Add_alarm extends AppCompatActivity {
 
-    TextClock actualTime;
     TimePicker timePicker;
-    RadioGroup sounds;
-    RadioButton sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_alarm);
 
-        Intent intent = getIntent();
-
-        actualTime = findViewById(R.id.time);
         timePicker = findViewById(R.id.clock);
 
-        sounds = findViewById(R.id.sounds);
-        Button apply = findViewById(R.id.button_sound);
+       if(MainActivity.existing.equals("yes")){
+           Intent i=getIntent();
+           timePicker.setCurrentHour(i.getIntExtra("hour",0));
+           timePicker.setCurrentMinute(i.getIntExtra("minute",0));
+       }
+
+        timePicker.setIs24HourView(true);
+        Button apply = findViewById(R.id.button_apply);
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String time;
+                time=Alarm();
+                if(MainActivity.existing.equals("yes")){
+                    Intent i=getIntent();
+                    TaskListContent.removeItem(i.getIntExtra("position",1));
+                }
 
-                int radioID = sounds.getCheckedRadioButtonId();
-
-                sound = findViewById(radioID);
+                TaskListContent.addItem(new TaskListContent.Task("Task." + TaskListContent.ITEMS.size() + 1,time));
+                InputMethodManager imm=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+                Toast.makeText(getApplicationContext(),"Alarm added!",Toast.LENGTH_SHORT).show();
+                Intent alarm=new Intent(Add_alarm.this,MainActivity.class);
+                setResult(RESULT_OK,alarm);
+                finish();
             }
         });
 
-
-        timePicker.setIs24HourView(true);
-
-        final Ringtone ring = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-        //#TODO DODAC SOWJE DZIEWKI I SPINNERA DO DZWIEKÓW
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (actualTime.getText().toString().equals(Alarm())) {
-                    ring.play();
-                } else {
-                    ring.stop();
-                }
-            }
-        }, 0, 1000);
-
     }
+
 
     public String Alarm()
     {
@@ -74,15 +59,21 @@ public class Add_alarm extends AppCompatActivity {
         Integer currentMinute = timePicker.getCurrentMinute();
 
         String text;
-        text= currentHour.toString().concat(":").concat(currentMinute.toString());
 
+        if(currentMinute<10 && currentHour<10){
+            text="0".concat(currentHour.toString()).concat(":0").concat(currentMinute.toString());
+        }
+        else if(currentMinute<10){
+            text= currentHour.toString().concat(":0").concat(currentMinute.toString());
+        }
+        else if(currentHour<10){
+            text="0".concat(currentHour.toString()).concat(":").concat(currentMinute.toString());
+        }
+        else
+        {
+            text= currentHour.toString().concat(":").concat(currentMinute.toString());
+        }
         return text;
-    }
-
-    public void checkButton(View v){
-        int radioID=sounds.getCheckedRadioButtonId();
-
-        sound=findViewById(radioID);
     }
 }
 
